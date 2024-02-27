@@ -1,0 +1,12 @@
+.friend {
+    display: grid;
+    grid-template-columns: 1;
+    color: rgb(72, 0, 121);
+    background-color: rgb(215, 244, 191);
+    margin: 10px;
+}
+
+.friend img {
+    width: 100px;
+    height: 100px;
+}

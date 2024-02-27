@@ -1,0 +1,11 @@
+.image img{
+    width: 200px;
+}
+
+.description {
+    font-family: sans-serif;
+}
+
+.fullName {
+    text-align: center;
+}

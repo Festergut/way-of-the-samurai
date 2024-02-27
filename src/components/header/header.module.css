@@ -1,0 +1,12 @@
+.header {
+    grid-area: header;
+    background-color: aquamarine;
+    
+}
+.header h1 {
+    text-align: center;
+}
+
+.login {
+    float: right;
+}
