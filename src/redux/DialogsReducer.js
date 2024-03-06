@@ -16,24 +16,16 @@ const DialogsReducer = createSlice({
                 { 'id': 4, 'message': "collective" },
                 { 'id': 5, 'message': "correctly" }
             ],
-            Message: '',
     },
     reducers: {
-        sendMessage: (state) => {
+        sendMessage: (state, action) => {
             return {
                 ...state,
-                Message: '',
-                Messages: [...state.Messages, { 'id': 7, 'message': state.Message }]
-            }
-        },
-        changeMessageText: (state, action) => {
-            return {
-                ...state,
-                Message: action.payload
+                Messages: [...state.Messages, { 'id': 7, 'message': action.payload }]
             }
         }
     }
 })
-export const {sendMessage, changeMessageText} = DialogsReducer.actions
+export const {sendMessage} = DialogsReducer.actions
 
 export default DialogsReducer.reducer;

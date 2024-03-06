@@ -2,7 +2,7 @@ import React from "react";
 import css from "./friend.module.css"
 import defUser from "../../../../assets/img/default_user.jpg"
 import { NavLink } from "react-router-dom";
-import { followAPI } from "../../../../api/auth-api";
+import { followAPI } from "../../../../api/api";
 import { useDispatch } from "react-redux";
 
 const Friend = (props) => {

@@ -12,11 +12,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        AddMessage: () => {
-            dispatch(sendMessage())
-        },
-        ChangeMessage: (message) => {
-            dispatch(changeMessageText(message))
+        AddMessage: (values) => {
+            dispatch(sendMessage(values))
         }
     }
 }

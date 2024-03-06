@@ -4,24 +4,23 @@ import Friends from "./Friends";
 import { getUsers, follow, unfollow, addIdtoDisable, changeCurrentPage, toggleLoading } from "../../../redux/FriendsReducer";
 import Preloader from "../common/preloader/preloader";
 
-export const FriendsContainer = (props) => {
+const FriendsContainer = (props) => {
     const dispatch = useDispatch()
     let isLoading = useSelector(state => state.FriendsData.isLoading)
     let friends = useSelector(state => state.FriendsData.friends)
     let currentPage = useSelector(state => state.FriendsData.currentPage)
-    let pagesCount = useSelector(state => state.FriendsData.pagesCount)
+    let pageSize = useSelector(state=>state.FriendsData.pageSize)
+    let totalUsersCount = useSelector(state=>state.FriendsData.totalUsersCount)
     let disableButtonByID = useSelector(state => state.FriendsData.disableButtonByID)
-
     useEffect(() => {
         dispatch(toggleLoading(true))
-        dispatch(getUsers({ currentPage: currentPage, pagesCount: pagesCount }))
-    }, [])
+        dispatch(getUsers({ currentPage: currentPage, pageSize: pageSize }))
+    }, [dispatch, currentPage, pageSize])
 
     const changePage = (p) => {
         dispatch(toggleLoading(true))
         dispatch(changeCurrentPage(p))
-        dispatch(getUsers({ currentPage: p, pagesCount: pagesCount }))
-        debugger
+        dispatch(getUsers({ currentPage: p, pageSize: pageSize }))
     }
     return <>
         {isLoading ? <Preloader /> : null}
@@ -31,9 +30,11 @@ export const FriendsContainer = (props) => {
             follow={follow}
             unfollow={unfollow}
             currentPage={currentPage}
-            pagesCount={pagesCount}
+            pageSize={pageSize}
+            totalUsersCount={totalUsersCount}
             disableButtonByID={disableButtonByID}
             addIdtoDisable={addIdtoDisable}
         />
     </>
 }
+export default FriendsContainer

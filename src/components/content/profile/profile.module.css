@@ -5,6 +5,9 @@
 .description {
     font-family: sans-serif;
 }
+.description:hover span {
+    cursor: pointer;
+}
 
 .fullName {
     text-align: center;

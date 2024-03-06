@@ -1,10 +1,12 @@
 import React from "react";
 import Friend from "./friend/Friend";
 import css from "./friends.module.css"
+import { Paginator } from "../common/paginator/Paginator";
 
 
 
 const Friends = (props) => {
+
     let FriendsData = props.friends.map((friend) => {
         return <Friend FriendsData={friend}
             follow={props.follow}
@@ -13,16 +15,15 @@ const Friends = (props) => {
             addIdtoDisable={props.addIdtoDisable} />
     })
 
-    // let pagesCount = Math.ceil(props.FriendsData.usersCount / props.FriendsData.pagesCount)
-    let pages = []
-    for (let i = Math.max(props.currentPage - 3, 1); i <= Math.max(Math.max(props.currentPage + 3, 1)); i++) {
-        pages.push(i);
-    }
-
     return (
         <div>
             <div>
-                {pages.map((p) => { return <span  className={props.currentPage === p && css.selectedPage} onClick={(e) => { props.changePage(p) }}>{p}</span> })}
+                <Paginator 
+                    pageSize={props.pageSize}
+                    currentPage={props.currentPage}
+                    totalItemsCount={props.totalUsersCount}
+                    changePage={props.changePage}
+                />
             </div>
             <div className={css.friends}>
                 {FriendsData}

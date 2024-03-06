@@ -1,12 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { ajaxGetUsers } from "../api/auth-api"
+import { ajaxGetUsers } from "../api/api"
 
 export const getUsers = createAsyncThunk(
     "FriendsData/getUsers",
-    async (args, thunkapi) => {
-        const response = await ajaxGetUsers(args.currentPage, args.pagesCount).then((data) => {
-            return data.items
-        })
+    async (args) => {
+        const response = await ajaxGetUsers(args.currentPage, args.pagesCount)
         return response
     }
 
@@ -17,8 +15,8 @@ const FriendsReducer = createSlice({
     name: "FriendsData",
     initialState: {
         friends: [],
-        usersCount: 0,
-        pagesCount: 5,
+        totalUsersCount: 0,
+        pageSize: 10,
         currentPage: 1,
         isLoading: false,
         disableButtonByID: []
@@ -58,11 +56,6 @@ const FriendsReducer = createSlice({
                 ...state, currentPage: action.payload
             }
         },
-        setUsersCount: (state, action) => {
-            return {
-                ...state, usersCount: action.payload
-            }
-        },
         toggleLoading: (state, action) => {
             return {
                 ...state, isLoading: action.payload
@@ -79,7 +72,8 @@ const FriendsReducer = createSlice({
     extraReducers: (builder) => {
         builder.addCase(getUsers.fulfilled, (state, action) => {
             state.isLoading = false
-            state.friends = action.payload
+            state.friends = action.payload.items
+            state.totalUsersCount = action.payload.totalCount
         })
     }
 }

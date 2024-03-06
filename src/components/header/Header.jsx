@@ -1,32 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import css from './header.module.css'
 import { NavLink } from "react-router-dom";
+import { logout } from "../../redux/AuthReducer";
+import { useDispatch } from "react-redux";
 
 const Header = (props) => {
-
-    let [header, setHeader] = useState('Амеба и Дебил')
-    let [editMode, setEditMode] = useState(false)
-
+    let dispatch = useDispatch()
 
 
     return (
         <div className={css.header}>
             <div>
-
-
-                {editMode ? <input autoFocus value={header} onBlur={() => { setEditMode(false) }} onChange={(e) => {
-                    
-                    setHeader(e.currentTarget.value)
-
-                }
-                } />
-                    : <h1 onClick={() => {
-                        setEditMode(true)
-                    }}>{header}</h1>}
-
+                <h1>пися попа</h1>
             </div>
             <div className={css.login}>
-                {props.auth.isAuth ? props.auth.data.login : <NavLink to={"/login"}>login</NavLink>}
+                {props.auth.isAuth 
+                ? <div> {props.auth.data.login} <button onClick={()=>{dispatch(logout())}}>logout</button></div> 
+                : <NavLink to={"/login"}>login</NavLink>}
             </div>
         </div>
     )

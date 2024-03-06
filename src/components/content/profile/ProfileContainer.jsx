@@ -11,7 +11,7 @@ function ProfileContainer() {
     let params = useParams()
     let profile = useSelector(state => state.ProfileData.profile)
     let loading = useSelector(state => state.ProfileData.loading)
-    let ownID = useSelector(state => state.AuthData.ownID)
+    let ownID = useSelector(state => state.AuthData.data.id)
     let dispatch = useDispatch()
 
 
