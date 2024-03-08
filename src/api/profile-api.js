@@ -17,6 +17,11 @@ export const profileAPI = {
             debugger
             return response
         })
+    },
+    updateProfilePhoto: (photo) => {
+        const form = new FormData();
+        form.append('image', photo)
+        return instance.put(`profile/photo`, form, { headers: { "Content-Type": "multipart/form-data" } })
     }
 
 }

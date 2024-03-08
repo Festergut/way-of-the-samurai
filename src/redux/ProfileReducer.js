@@ -21,7 +21,14 @@ export const updateProfileStatus = createAsyncThunk(
     'ProfileData/UpdateProfileStatus',
     async (statustext) => {
         let response = await profileAPI.updateProfileStatus(statustext)
-        debugger
+        return response
+    }
+)
+
+export const updateProfilePhoto = createAsyncThunk(
+    'ProfileData/updateProfilePhoto',
+    async (photo) => {
+        let response = await profileAPI.updateProfilePhoto(photo)
         return response
     }
 )
@@ -30,7 +37,7 @@ const ProfileReducer = createSlice({
     name: "ProfileData",
     initialState: {
         profile: null,
-        loading: false,
+        loading: true,
         status: ''
     },
     reducers: {
@@ -43,7 +50,7 @@ const ProfileReducer = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(getProfile.fulfilled, (state, action) => {
-            return { ...state, profile: action.payload, loading: true }
+            return { ...state, profile: action.payload, loading: false }
         })
         builder.addCase(getProfileStatus.fulfilled, (state, action) => {
             return { ...state, status: action.payload.data }

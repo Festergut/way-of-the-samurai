@@ -16,15 +16,16 @@ function ProfileContainer() {
 
 
     useEffect(() => {
+        
         let userId = params.userId
         if (!userId) {
             userId = ownID
-        } 
+        }
         dispatch(getProfile(userId))
     }, [dispatch, params.userId, ownID])
 
     return (
-        <Profile profile={profile} params={params} loading={loading}/>
+        <Profile profile={profile} params={params} loading={loading} />
     )
 }
 

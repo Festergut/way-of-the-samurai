@@ -5,7 +5,6 @@ import css from './content.module.css'
 import DialogsWindowContainer from "./dialogsWindow/DialogsWindowContainer";
 import ProfileContainer from "./profile/ProfileContainer";
 import Login from "../entering/Login";
-import { withSuspense } from "../../hoc/withSuspense";
 const FriendsContainer = lazy(() => import('./friends/FriendsContainer'))
 // lazy компонент работает только с default export
 

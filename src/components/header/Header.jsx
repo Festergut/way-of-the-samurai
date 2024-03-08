@@ -1,22 +1,21 @@
 import React from "react";
 import css from './header.module.css'
 import { NavLink } from "react-router-dom";
-import { logout } from "../../redux/AuthReducer";
-import { useDispatch } from "react-redux";
+import BasicMenu from "./Menu";
+import Button from '@mui/material/Button';
 
 const Header = (props) => {
-    let dispatch = useDispatch()
-
 
     return (
         <div className={css.header}>
             <div>
-                <h1>пися попа</h1>
+                <h2>SOCIALKA</h2>
             </div>
             <div className={css.login}>
-                {props.auth.isAuth 
-                ? <div> {props.auth.data.login} <button onClick={()=>{dispatch(logout())}}>logout</button></div> 
-                : <NavLink to={"/login"}>login</NavLink>}
+                {props.auth.isAuth
+                    ? <BasicMenu name={props.auth.data.login} isAuth={props.auth.isAuth} />
+                    : <NavLink to={"/login"}><Button>Login</Button></NavLink>
+                }
             </div>
         </div>
     )

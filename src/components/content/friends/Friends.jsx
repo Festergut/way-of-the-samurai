@@ -17,7 +17,7 @@ const Friends = (props) => {
 
     return (
         <div>
-            <div>
+            <div className={css.paginator}>
                 <Paginator 
                     pageSize={props.pageSize}
                     currentPage={props.currentPage}

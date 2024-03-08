@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import LoginForm from "./LoginForm";
 import { login } from "../../redux/AuthReducer";
 import { useDispatch, useSelector } from "react-redux";

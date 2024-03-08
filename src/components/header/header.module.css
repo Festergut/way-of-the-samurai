@@ -1,12 +1,15 @@
 .header {
     grid-area: header;
-    background-color: aquamarine;
-    
+    background-color: rgb(51, 51, 54);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
 }
-.header h1 {
-    text-align: center;
+.header h2{   
+    margin: 0;
+    padding: 0; 
 }
 
 .login {
-    float: right;
+    grid-column-start: 5;
+    justify-self: end;
 }

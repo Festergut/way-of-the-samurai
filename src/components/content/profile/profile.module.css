@@ -1,14 +1,27 @@
+.profilepage {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
 .image img{
+    border-radius: 50%;
     width: 200px;
 }
 
 .description {
     font-family: sans-serif;
 }
-.description:hover span {
+
+
+.status {
+    font-size: large;
+}
+
+.status:hover{
     cursor: pointer;
 }
 
-.fullName {
-    text-align: center;
+.contacts {
+    margin: 0;
+    padding: 10px;
 }

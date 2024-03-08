@@ -1,6 +1,6 @@
 import React from "react";
 import css from "./friend.module.css"
-import defUser from "../../../../assets/img/default_user.jpg"
+import defaultUser from "../../../../assets/img/default_user.jpg"
 import { NavLink } from "react-router-dom";
 import { followAPI } from "../../../../api/api";
 import { useDispatch } from "react-redux";
@@ -10,13 +10,13 @@ const Friend = (props) => {
 
     return (
         <div className={css.friend} key={props.FriendsData.id}>
-            <div>
+            <div className={css.friendimg}>
                 <NavLink to={"/profile/" + props.FriendsData.id} >
-                    <img src={props.FriendsData.photos.small != null ? props.FriendsData.photos.small : defUser} alt="friend_image" />
+                    <img src={props.FriendsData.photos.small != null ? props.FriendsData.photos.small : defaultUser} alt="friend_image" />
                 </NavLink>
             </div>
             <div>
-                <div>{props.FriendsData.name}</div>
+                <div className={css.friendname}>{props.FriendsData.name}</div>
                 <div>{props.FriendsData.description}</div>
                 <div>{props.FriendsData.city}</div>
                 <div>
