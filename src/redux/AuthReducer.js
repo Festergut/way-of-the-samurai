@@ -1,30 +1,40 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { authMe, loginReq, logoutReq } from "../api/auth-api";
+import { authMe, captchaReq, loginReq, logoutReq } from "../api/auth-api";
 
 export const getAuthData = createAsyncThunk(
     'AuthData/getAuthData',
     async () => {
         let response = await authMe()
-        return response
+        return response.data
     }
 )
 export const login = createAsyncThunk(
     'login/AuthData',
     async (data) => {
-        let response = await loginReq(
+        let loginRes = await loginReq(
             {
                 email: data.email,
                 password: data.password,
-                rememberMe: data.rememberMe
-            }).then((response) => {
-                if (response.data.resultCode === 0) {
-                    authMe().then((response) => {
-                        console.log(response)
-                    })
-                }
-                return response
+                rememberMe: data.rememberMe,
+                captcha: data.captcha
             })
-        return response
+        if (loginRes.data.resultCode === 0) {
+            let response = await authMe().then((response) => {
+                return response.data
+            })
+            return response
+        }
+        if (loginRes.data.resultCode === 1) {
+            return loginRes.data
+        }
+        if (loginRes.data.resultCode === 10) {
+            let response = await captchaReq().then((response) => {
+                debugger
+                return response.data
+            })
+            return response
+        }
+
     }
 )
 
@@ -45,26 +55,35 @@ const AuthReducer = createSlice({
             login: null,
             email: null,
         },
-        isAuth: false
+        isAuth: false,
+        error: null,
+        captchaURL: null, 
     },
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(getAuthData.fulfilled, (state, action) => {
-            if (action.payload.data.resultCode === 0) {
+            if (action.payload.resultCode === 0) {
+                state.data = action.payload.data
                 state.isAuth = true
             }
-            state.data = action.payload.data.data
         })
         builder.addCase(login.fulfilled, (state, action) => {
-            console.log(action)
+            if (action.payload.resultCode === 0) {
+                state.data = action.payload.data
+                state.isAuth = true
+                state.error = null
+            }
+            if (action.payload.resultCode === 1) {
+                state.error = action.payload.messages[0]
+            }
+            state.captchaURL = action.payload.url
         })
         builder.addCase(logout.fulfilled, (state, action) => {
-            if(action.payload.data.resultCode === 0) {
+            if (action.payload.data.resultCode === 0) {
                 state.isAuth = false
                 state.data.id = null
                 state.data.login = null
                 state.data.email = null
-
             }
         })
     }

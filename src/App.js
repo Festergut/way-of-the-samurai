@@ -14,7 +14,7 @@ function App(props) {
   let dispatch = useDispatch()
   useEffect(() => {
     dispatch(initializeApp())
-  }, [])
+  }, [dispatch])
   if (!initialized) {
     return (<Preloader />)
   }

@@ -7,10 +7,15 @@ export const authMe = () => {
 
 export const loginReq = (data) => {
     if (data) {
+        debugger
         return instance.post('auth/login', data)
     }
 }
 
 export const logoutReq = () => {
     return instance.delete('auth/login')
+}
+
+export const captchaReq = () => {
+    return instance.get('security/get-captcha-url')
 }

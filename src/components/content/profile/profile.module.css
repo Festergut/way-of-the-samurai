@@ -25,3 +25,25 @@
     margin: 0;
     padding: 10px;
 }
+
+.ChangeProfileForm {
+    background-color: rgb(51, 51, 54);
+    border-radius: 15px;
+    color: rgb(185, 185, 185);
+
+}
+.ChangeProfileForm form {
+    padding: 30px;
+}
+.ChangeProfileForm input {
+    color: rgb(222, 223, 226);
+}
+.ChangeProfileForm textarea {
+    color: rgb(222, 223, 226);
+}
+.ChangeProfileForm label{
+    color: rgb(222, 223, 226);
+}
+.indent {
+    padding: 10px;
+}

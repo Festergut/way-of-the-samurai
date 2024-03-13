@@ -12,9 +12,7 @@ export const profileAPI = {
         })
     },
     updateProfileStatus: (statustext) => {
-        debugger
         return instance.put(`profile/status`, { "status": statustext }).then((response) => {
-            debugger
             return response
         })
     },
@@ -22,6 +20,10 @@ export const profileAPI = {
         const form = new FormData();
         form.append('image', photo)
         return instance.put(`profile/photo`, form, { headers: { "Content-Type": "multipart/form-data" } })
+    },
+    updateProfileData: (changedProfileData) => {
+        return instance.put(`profile`, changedProfileData).then((response)=>{
+            return response
+        })
     }
-
 }

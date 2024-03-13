@@ -21,7 +21,10 @@ export const updateProfileStatus = createAsyncThunk(
     'ProfileData/UpdateProfileStatus',
     async (statustext) => {
         let response = await profileAPI.updateProfileStatus(statustext)
-        return response
+        debugger
+        if (response.data.resultCode === 0) {
+            debugger
+        }
     }
 )
 
@@ -29,6 +32,13 @@ export const updateProfilePhoto = createAsyncThunk(
     'ProfileData/updateProfilePhoto',
     async (photo) => {
         let response = await profileAPI.updateProfilePhoto(photo)
+        return response
+    }
+)
+export const updateProfileData = createAsyncThunk(
+    'ProfileData/updateProfileData',
+    async (changedProfileData) => {
+        let response = await profileAPI.updateProfileData(changedProfileData)
         return response
     }
 )

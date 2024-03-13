@@ -23,8 +23,8 @@ function Profile (props) {
         }
         dispatch(getProfileStatus(userId))
         setStatus(selectedStatus)
-    }, [selectedStatus])
-
+    }, [selectedStatus, dispatch, params.userId, ownID])
+    
     return (
         <div>
             {props.loading ? "loading..."
@@ -54,7 +54,7 @@ function Profile (props) {
                                     setEditMode(false)
                                     dispatch(updateProfileStatus(e.currentTarget.value))
                                 }} value={status} onChange={(e) => { setStatus(e.currentTarget.value) }} /> : selectedStatus}
-                                {selectedStatus == '' ? 'enter status' : ''}
+                                {selectedStatus === '' ? 'enter status' : ''}
 
                             </span>
                         </div>

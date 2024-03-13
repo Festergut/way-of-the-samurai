@@ -1,0 +1,19 @@
+.loginform input {
+    color: rgb(187, 185, 185);
+}
+
+.loginform label {
+    color: rgb(187, 185, 185);
+}
+
+.loginform {
+    padding: 10px;
+}
+
+.indent {
+    padding: 10px;
+}
+
+.error {
+    color: red;
+}

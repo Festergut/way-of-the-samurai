@@ -1,21 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LoginForm from "./LoginForm";
 import { login } from "../../redux/AuthReducer";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
     let dispatch = useDispatch()
+    let navigate = useNavigate()
     let isAuth = useSelector(state => state.AuthData.isAuth)
 
-
+    useEffect(()=>{
+        if (isAuth) {
+            navigate('/profile')
+        }
+    }, [isAuth, navigate])
 
     const onSubmit = (props) => {
+        debugger
         dispatch(login(props))
-        //допилить редирект ПРИХОДИТСЯ ПЕРЕЗАГРУЖАТЬ
     }
     if (isAuth) {
-        <Navigate to={'profile'} />
+        navigate('/profile')
     }
 
     return (

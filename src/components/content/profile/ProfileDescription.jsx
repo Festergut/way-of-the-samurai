@@ -6,7 +6,9 @@ export const ProfileDescription = (props) => {
 
     return (
         <div>
+            <div>About me: {props.profile.aboutMe}</div>
             <div>Looking for a job: {props.profile.lookingForAJob ? "yes" : "no"}</div>
+            <div>Skills: {props.profile.lookingForAJobDescription}</div>
             <div>
                 <b>Contacts:</b>
                 <div className={css.contacts}>
